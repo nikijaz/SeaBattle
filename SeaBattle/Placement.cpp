@@ -206,7 +206,7 @@ void initPlayerVsPlayerWar(vector<vector<vector<int>>> fields, vector<string> na
 		switch (key) {
 		case KEY_ARROW_UP:
 		case KEY_W:
-			if (key == KEY_ARROW_UP && turn)
+			if ((key == KEY_ARROW_UP && turn) || (key == KEY_W && !turn))
 				break;
 			for (int i = 1; i < 10; i++)
 				if (canMoveShipTo(attackFields[turn], x[turn], y[turn] - i, 1, 1)) {
@@ -216,7 +216,7 @@ void initPlayerVsPlayerWar(vector<vector<vector<int>>> fields, vector<string> na
 			break;
 		case KEY_ARROW_DOWN:
 		case KEY_S:
-			if (key == KEY_ARROW_DOWN && turn)
+			if ((key == KEY_ARROW_DOWN && turn) || (key == KEY_S && !turn))
 				break;
 			for (int i = 1; i < 10; i++)
 				if (canMoveShipTo(attackFields[turn], x[turn], y[turn] + i, 1, 1)) {
@@ -226,7 +226,7 @@ void initPlayerVsPlayerWar(vector<vector<vector<int>>> fields, vector<string> na
 			break;
 		case KEY_ARROW_LEFT:
 		case KEY_A:
-			if (key == KEY_ARROW_LEFT && turn)
+			if ((key == KEY_ARROW_LEFT && turn) || (key == KEY_A && !turn))
 				break;
 			for (int i = 1; i < 10; i++)
 				if (canMoveShipTo(attackFields[turn], x[turn] - i, y[turn], 1, 1)) {
@@ -236,7 +236,7 @@ void initPlayerVsPlayerWar(vector<vector<vector<int>>> fields, vector<string> na
 			break;
 		case KEY_ARROW_RIGHT:
 		case KEY_D:
-			if (key == KEY_ARROW_RIGHT && turn)
+			if ((key == KEY_ARROW_RIGHT && turn) || (key == KEY_D && !turn))
 				break;
 			for (int i = 1; i < 10; i++)
 				if (canMoveShipTo(attackFields[turn], x[turn] + i, y[turn], 1, 1)) {
@@ -247,7 +247,7 @@ void initPlayerVsPlayerWar(vector<vector<vector<int>>> fields, vector<string> na
 
 		case KEY_ENTER:
 		case KEY_SPACE:
-			if (key == KEY_ENTER && turn)
+			if ((key == KEY_ENTER && turn) || (key == KEY_SPACE && !turn))
 				break;
 			if (fields[turn][y[turn]][x[turn]] == 2) {
 				attackFields[turn][y[turn]][x[turn]] = 4;
@@ -353,7 +353,7 @@ void initPlayerVsPlayerWar(vector<vector<vector<int>>> fields, vector<string> na
 				for (int j = 0; j < 10; j++)
 					if (attackFields[turn][i][j] == 4)
 						destroyed++;
-			
+
 			if (destroyed == 1 * 4 + 2 * 3 + 3 * 2 + 4 * 1) {
 				for (int i = 0; i < 10; i++)
 					for (int j = 0; j < 10; j++) {
